@@ -30,7 +30,7 @@ def gameLoop():
     bird_x = 150
     bird_y = 200
     bird_width = 100
-    bird_height = 40
+    bird_height = 43
 
     bird_y_move = 5
 
@@ -67,6 +67,23 @@ def gameLoop():
         if blck_x < (-1 * blck_width):
             blck_x = screen_width
             blck_height = randint(0,(screen_height/2))
+
+        if bird_x + bird_width > blck_x:
+            if bird_x < blck_x + blck_width:
+                print('upper x')
+                if bird_y < blck_height:
+                    print('y cross upper')
+                    if(bird_x - bird_width < blck_x + blck_width):
+                        print('game over UPPER')
+                        gameOver()
+
+        if bird_x + bird_width > blck_x:
+            print('x crossover')
+            if bird_y + bird_height > blck_height+blck_gap:
+                print('Y crossover lower')
+                if bird_x < blck_x + blck_width:
+                    print('game over LOWER')
+                    gameOver()
 
         pygame.display.update()
         clock.tick(60)
