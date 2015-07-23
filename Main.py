@@ -64,6 +64,10 @@ def gameLoop():
         if bird_y > screen_height - bird_height or bird_y < 0 :
             gameOver()
 
+        if blck_x < (-1 * blck_width):
+            blck_x = screen_width
+            blck_height = randint(0,screen_height)
+
         pygame.display.update()
         clock.tick(60)
 
