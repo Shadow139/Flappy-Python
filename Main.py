@@ -5,14 +5,20 @@ import pygame
 clr_black = (0,0,0)
 clr_white = (255,255,255)
 
+screen_width = 800
+screen_height = 600
 
 pygame.init()
 
-surface = pygame.display.set_mode((800,600))
+surface = pygame.display.set_mode((screen_width,screen_height))
 
 pygame.display.set_caption("Awaaaysomeee Game!")
 
 clock = pygame.time.Clock()
+
+def gameOver():
+    pygame.quit()
+    quit()
 
 def bird(x,y,image):
     surface.blit(image,(x,y))
@@ -43,8 +49,10 @@ while not game_over:
     surface.fill(clr_black)
     bird(bird_x,bird_y,img)
 
-    pygame.display.update()
+    if bird_y > screen_height - 40 or bird_y < 0 :
+        gameOver()
 
+    pygame.display.update()
     clock.tick(60)
 
 pygame.quit()
