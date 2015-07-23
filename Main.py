@@ -37,7 +37,7 @@ def gameLoop():
     blck_x = screen_width
     blck_y = 0
     blck_width = 75
-    blck_height = randint(0,screen_height)
+    blck_height = randint(0,(screen_height/2))
     blck_gap = 125
     blck_move = 3
 
@@ -58,7 +58,7 @@ def gameLoop():
         surface.fill(clr_black)
         bird(bird_x,bird_y,img)
 
-        makeblocks(blck_x,blck_y,blck_width,blck_height,blck_gap)
+        makeBlocks(blck_x,blck_y,blck_width,blck_height,blck_gap)
         blck_x -= blck_move
 
         if bird_y > screen_height - bird_height or bird_y < 0 :
@@ -66,7 +66,7 @@ def gameLoop():
 
         if blck_x < (-1 * blck_width):
             blck_x = screen_width
-            blck_height = randint(0,screen_height)
+            blck_height = randint(0,(screen_height/2))
 
         pygame.display.update()
         clock.tick(60)
@@ -86,9 +86,9 @@ def replay_or_quit():
 
     return None
 
-def makeblocks(x_block,y_block,block_width,block_height,gap):
+def makeBlocks(x_block,y_block,block_width,block_height,gap):
     pygame.draw.rect(surface,clr_white,[x_block,y_block,block_width,block_height])
-    pygame.draw.rect(surface,clr_white,[x_block,y_block + block_height + gap,block_width,block_height])
+    pygame.draw.rect(surface,clr_white,[x_block,y_block + block_height + gap,block_width,screen_height])
 
 def makeTextObjs(message,font):
     textSurface = font.render(message,True,clr_white)
