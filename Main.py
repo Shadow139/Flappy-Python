@@ -32,10 +32,10 @@ while not game_over:
             game_over = True
 
         if event.type == pygame.KEYDOWN :
-            if event.key == pygame.K_UP:
+            if event.key == pygame.K_SPACE:
                 bird_y_move = -5
         if event.type == pygame.KEYUP:
-            if event.key == pygame.K_UP:
+            if event.key == pygame.K_SPACE:
                 bird_y_move = 5
 
     bird_y += bird_y_move
