@@ -28,15 +28,7 @@ clock = pygame.time.Clock()
 def gameLoop():
     game_over = False
 
-    bird_x = 150
-    bird_y = 200
-    bird_width = 100
-    bird_height = 43
-
-    bird_y_move = 5
-
     player = Bird.Bird(150,200, 0, 5,'Assets/bird.png')
-    print(player.width,player.height)
 
     blck_x = screen_width
     blck_y = 0
@@ -52,40 +44,40 @@ def gameLoop():
 
             if event.type == pygame.KEYDOWN :
                 if event.key == pygame.K_SPACE:
-                    bird_y_move = -5
+                    player.y_velocity = -5
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_SPACE:
-                    bird_y_move = 5
+                    player.y_velocity = 5
 
-        bird_y += bird_y_move
+        player.y += player.y_velocity
 
         surface.fill(clr_black)
-        bird(bird_x,bird_y,img)
+        bird(player.x,player.y,img)
 
         makeBlocks(blck_x,blck_y,blck_width,blck_height,blck_gap)
         blck_x -= blck_move
 
-        if bird_y > screen_height - bird_height or bird_y < 0 :
+        if player.y > screen_height - player.height or player.y < 0 :
             gameOver()
 
         if blck_x < (-1 * blck_width):
             blck_x = screen_width
             blck_height = randint(0,(screen_height/2))
 
-        if bird_x + bird_width > blck_x:
-            if bird_x < blck_x + blck_width:
+        if player.x + player.width > blck_x:
+            if player.x < blck_x + blck_width:
                 print('upper x')
-                if bird_y < blck_height:
+                if player.y < blck_height:
                     print('y cross upper')
-                    if(bird_x - bird_width < blck_x + blck_width):
+                    if(player.x - player.width < blck_x + blck_width):
                         print('game over UPPER')
                         gameOver()
 
-        if bird_x + bird_width > blck_x:
+        if player.x + player.width > blck_x:
             print('x crossover')
-            if bird_y + bird_height > blck_height+blck_gap:
+            if player.y + player.height > blck_height+blck_gap:
                 print('Y crossover lower')
-                if bird_x < blck_x + blck_width:
+                if player.x < blck_x + blck_width:
                     print('game over LOWER')
                     gameOver()
 
