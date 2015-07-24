@@ -4,6 +4,7 @@ __author__ = 'Wiktor'
 
 import pygame
 import time
+import Bird
 
 clr_black = (0,0,0)
 clr_white = (255,255,255)
@@ -33,6 +34,9 @@ def gameLoop():
     bird_height = 43
 
     bird_y_move = 5
+
+    player = Bird.Bird(150,200, 0, 5,'Assets/bird.png')
+    print(player.width,player.height)
 
     blck_x = screen_width
     blck_y = 0

@@ -10,3 +10,8 @@ def imageLoader(image, scale, clip):
     scaledAsset = pygame.transform.scale(playerClipped, (clip[2] * scale, clip[3] * scale))
 
     return scaledAsset
+
+def imageLoader(image):
+    asset = pygame.image.load(image)
+
+    return asset
