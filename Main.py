@@ -64,19 +64,13 @@ def gameLoop():
 
         if player.x + player.width > block.x:
             if player.x < block.x + block.width:
-                print('upper x')
                 if player.y < block.height:
-                    print('y cross upper')
                     if(player.x - player.width < block.x + block.width):
-                        print('game over UPPER')
                         gameOver()
 
         if player.x + player.width > block.x:
-            print('x crossover')
             if player.y + player.height > block.height + block.gap:
-                print('Y crossover lower')
                 if player.x < block.x + block.width:
-                    print('game over LOWER')
                     gameOver()
 
         pygame.display.update()
