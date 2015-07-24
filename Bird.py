@@ -13,3 +13,6 @@ class Bird:
         self.rect = self.asset.get_rect()
         self.width = self.rect.width
         self.height = self.rect.height
+
+    def render(self,surface, x, y, img):
+            surface.blit(img,(x,y))

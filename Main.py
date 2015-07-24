@@ -1,10 +1,12 @@
-from random import randint
-
 __author__ = 'Wiktor'
+
+from random import randint
 
 import pygame
 import time
 import Bird
+
+### Definitions
 
 clr_black = (0,0,0)
 clr_white = (255,255,255)
@@ -17,9 +19,7 @@ text_small = pygame.font.Font('freesansbold.ttf',20)
 text_large = pygame.font.Font('freesansbold.ttf',150)
 
 pygame.init()
-
 surface = pygame.display.set_mode((screen_width,screen_height))
-
 pygame.display.set_caption("Awaaaysomeee Game!")
 
 clock = pygame.time.Clock()
@@ -52,7 +52,7 @@ def gameLoop():
         player.y += player.y_velocity
 
         surface.fill(clr_black)
-        bird(player.x,player.y,img)
+        player.render(surface,player.x,player.y,player.asset)
 
         makeBlocks(blck_x,blck_y,blck_width,blck_height,blck_gap)
         blck_x -= blck_move
@@ -124,13 +124,9 @@ def msgOnScreen(message):
 
     gameLoop()
 
-def bird(x,y,image):
-    surface.blit(image,(x,y))
-
 img = pygame.image.load('Assets/bird.png')
 
 gameLoop()
-
 
 pygame.quit()
 quit()
