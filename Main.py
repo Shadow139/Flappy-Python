@@ -1,17 +1,16 @@
-import Block
-
 __author__ = 'Wiktor'
 
 from random import randint
+from Color import *
 
 import pygame
 import time
 import Bird
+import Block
+
 
 ### Definitions
 
-clr_black = (0,0,0)
-clr_white = (255,255,255)
 
 screen_width = 800
 screen_height = 600
