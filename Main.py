@@ -28,6 +28,9 @@ def gameLoop():
 
     space_pressed = True
 
+    sound = pygame.mixer.Sound('Assets/Audio/TheLoomingBattle_0.OGG')
+    sound.play()
+
     background1 = Background.Background('Assets/background.png',0,0)
     background2 = Background.Background('Assets/background.png',screen_width,0)
 
