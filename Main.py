@@ -7,11 +7,12 @@ import pygame
 import time
 import Bird
 import Block
+import Background
 
 ### Definitions
 
 screen_width = 800
-screen_height = 600
+screen_height = 480
 
 pygame.font.init()
 text_small = pygame.font.Font('freesansbold.ttf',20)
@@ -27,9 +28,11 @@ clock = pygame.time.Clock()
 def gameLoop():
     game_over = False
 
+    background = Background.Background('Assets/background.png',0,0)
+
     player = Bird.Bird(150,200, 0, 5,'Assets/bird.png')
 
-    block = Block.Block(screen_width,0,75,randint(0,(screen_height/2)),125,3,0,clr_white)
+    block = Block.Block(screen_width,0,75,randint(0,(screen_height/2)),180,3,0,clr_white)
 
 
     while not game_over:
@@ -47,6 +50,7 @@ def gameLoop():
         player.y += player.y_velocity
 
         surface.fill(clr_black)
+        background.render(surface,screen_width)
         player.render(surface,player.x,player.y,player.asset)
 
         makeBlocks(block.x,block.y,block.width,block.height,block.gap)
