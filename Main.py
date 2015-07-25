@@ -24,6 +24,7 @@ clock = pygame.time.Clock()
 
 def gameLoop():
     game_over = False
+    pause = False
 
     background1 = Background.Background('Assets/background.png',0,0)
     background2 = Background.Background('Assets/background.png',screen_width,0)
@@ -43,17 +44,26 @@ def gameLoop():
     #spike = Spike.Spike(screen_width,0,75,randint(0,(screen_height/2)) ,180,3,0,'Assets/spikeLong.png','Assets/spikeLongFlip.png')
 
     while not game_over:
-        space = pygame.key.get_pressed()[pygame.K_SPACE]
-
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit(1)
+
+            if event.type == pygame.KEYUP:
+                if event.key == pygame.K_ESCAPE:
+                    pause = not(pause)
+
+        if pause:
+            continue
+
+        space = pygame.key.get_pressed()[pygame.K_SPACE]
 
         if space:
             player.y_velocity = -5
         else:
             player.y_velocity = 5
 
+
+        print(pause)
         player.update()
 
         surface.fill(clr_black)
