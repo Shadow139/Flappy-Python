@@ -8,3 +8,7 @@ __pycache__/Bird.cpython-34.pyc
 __pycache__/ImageLoader.cpython-34.pyc
 __pycache__/Block.cpython-34.pyc
 __pycache__/Color.cpython-34.pyc
+__pycache__/Animation.cpython-34.pyc
+__pycache__/Background.cpython-34.pyc
+__pycache__/ParallaxScrolling.cpython-34.pyc
+__pycache__/pyganim.cpython-34.pyc
