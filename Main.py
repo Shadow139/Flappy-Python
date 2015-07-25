@@ -8,9 +8,7 @@ import time
 import Bird
 import Block
 
-
 ### Definitions
-
 
 screen_width = 800
 screen_height = 600
