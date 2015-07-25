@@ -15,12 +15,6 @@ import sys
 import Spike
 
 
-### Definitions
-
-pygame.font.init()
-text_small = pygame.font.Font('freesansbold.ttf',20)
-text_large = pygame.font.Font('freesansbold.ttf',150)
-
 pygame.init()
 surface = pygame.display.set_mode((screen_width,screen_height))
 pygame.display.set_caption("Awaaaysomeee Game!")
@@ -49,16 +43,16 @@ def gameLoop():
     #spike = Spike.Spike(screen_width,0,75,randint(0,(screen_height/2)) ,180,3,0,'Assets/spikeLong.png','Assets/spikeLongFlip.png')
 
     while not game_over:
+        space = pygame.key.get_pressed()[pygame.K_SPACE]
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit(1)
 
-            if event.type == pygame.KEYDOWN :
-                if event.key == pygame.K_SPACE:
-                    player.y_velocity = -5
-            if event.type == pygame.KEYUP:
-                if event.key == pygame.K_SPACE:
-                    player.y_velocity = 5
+        if space:
+            player.y_velocity = -5
+        else:
+            player.y_velocity = 5
 
         player.update()
 
