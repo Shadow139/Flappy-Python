@@ -14,7 +14,7 @@ class ParallaxScrolling:
         self.graphic2.x = self.graphic2.x + self.scrollspeed
 
         if self.graphic1.x <= -scroll_length:
-            self.graphic1.x = scroll_length - 1
+            self.graphic1.x = scroll_length
 
         if self.graphic2.x <= -scroll_length:
-            self.graphic2.x = scroll_length - 1
+            self.graphic2.x = scroll_length

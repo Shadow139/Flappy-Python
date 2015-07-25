@@ -33,7 +33,7 @@ def gameLoop():
     background1 = Background.Background('Assets/background.png',0,0)
     background2 = Background.Background('Assets/background.png',screen_width,0)
 
-    background_scroller = ParallaxScrolling.ParallaxScrolling(background1,background2,-3)
+    background_scroller = ParallaxScrolling.ParallaxScrolling(background1,background2,-4)
 
     player = Bird.Bird(150,200, 0, 5,'Assets/bird.png')
 
