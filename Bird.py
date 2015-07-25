@@ -3,16 +3,18 @@ from ImageLoader import *
 
 
 class Bird:
-    def __init__(self, x , y, x_velocity, y_velocity, image):
+    def __init__(self, x , y, x_velocity, y_velocity ,animation):
         self.x = x
         self.y = y
         self.x_velocity = x_velocity
         self.y_velocity = y_velocity
 
-        self.asset = imageLoader(image)
-        self.rect = self.asset.get_rect()
+        self.animation = animation
+
+        self.rect = self.animation.rect
         self.width = self.rect.width
         self.height = self.rect.height
 
-    def render(self,surface, x, y, img):
-            surface.blit(img,(x,y))
+    def render(self,surface):
+            self.animation.render(surface,self.x,self.y)
+

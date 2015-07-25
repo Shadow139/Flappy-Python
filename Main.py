@@ -1,4 +1,7 @@
+import Animation
+from ImageLoader import imageLoaderScaled
 import ParallaxScrolling
+import pyganim
 
 __author__ = 'Wiktor'
 
@@ -35,10 +38,11 @@ def gameLoop():
 
     background_scroller = ParallaxScrolling.ParallaxScrolling(background1,background2,-4)
 
-    player = Bird.Bird(150,200, 0, 5,'Assets/bird.png')
+    anim = Animation.Animation("Assets/grumpy/", 0.1, 0.125)
+
+    player = Bird.Bird(150, 200, 0, 5, anim)
 
     block = Block.Block(screen_width,0,75,randint(0,(screen_height/2)),180,3,0,clr_white)
-
 
     while not game_over:
         for event in pygame.event.get():
@@ -56,7 +60,7 @@ def gameLoop():
 
         surface.fill(clr_black)
         background_scroller.render(surface,screen_width)
-        player.render(surface,player.x,player.y,player.asset)
+        player.render(surface)
 
         makeBlocks(block.x,block.y,block.width,block.height,block.gap)
         block.x -= block.x_velocity
