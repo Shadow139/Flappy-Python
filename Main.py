@@ -24,9 +24,12 @@ clock = pygame.time.Clock()
 
 def gameLoop():
     game_over = False
-    pause = False
+    paused = False
 
     space_pressed = True
+
+    pause_bckgrnd = pygame.Surface((screen_width,screen_height), pygame.SRCALPHA, 32)
+    pause_bckgrnd.fill((0, 0, 0, 50))
 
     sound = pygame.mixer.Sound('Assets/Audio/TheLoomingBattle_0.OGG')
     sound.play()
@@ -52,47 +55,53 @@ def gameLoop():
 
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_ESCAPE:
-                    pause = not(pause)
+                    paused = not(paused)
                 if event.key == pygame.K_SPACE:
                     space_pressed = True
 
-        if pause:
-            continue
+        if not paused:
+            space = pygame.key.get_pressed()[pygame.K_SPACE]
 
-        space = pygame.key.get_pressed()[pygame.K_SPACE]
+            if space and space_pressed:
+                player.y_velocity = -45
+                space_pressed = False
+            else:
+                player.y_velocity = 5
 
-        if space and space_pressed:
-            player.y_velocity = -45
-            space_pressed = False
+            background_scroller1.render(surface,screen_width)
+            background_scroller2.render(surface,screen_width)
+
+            player.update()
+            player.render(surface)
+
+            block.update()
+            block.renderBlocks(surface)
+
+            #spike.update()
+            #spike.render(surface)
+
+            if player.y > screen_height - player.height + 20 or player.y < 0 :
+                gameOver()
+
+            #if player.rect.colliderect(spike.rect1):
+            #    print('collision with 1')
+
+            #if player.rect.colliderect(spike.rect2):
+            #    print('collision with 2')
+
+            if player.checkCollision(block):
+                gameOver()
+
+            pygame.display.update()
+            clock.tick(60)
+
         else:
-            player.y_velocity = 5
+            #surface.blit(pause_bckgrnd,(0,0))
+            pygame.display.update()
+            clock.tick(60)
 
-        background_scroller1.render(surface,screen_width)
-        background_scroller2.render(surface,screen_width)
 
-        player.update()
-        player.render(surface)
 
-        block.update()
-        block.renderBlocks(surface)
-
-        #spike.update()
-        #spike.render(surface)
-
-        if player.y > screen_height - player.height + 20 or player.y < 0 :
-            gameOver()
-
-        #if player.rect.colliderect(spike.rect1):
-        #    print('collision with 1')
-
-        #if player.rect.colliderect(spike.rect2):
-        #    print('collision with 2')
-
-        if player.checkCollision(block):
-            gameOver()
-
-        pygame.display.update()
-        clock.tick(60)
 
 def gameOver():
     msgOnScreen('Game Over!')
