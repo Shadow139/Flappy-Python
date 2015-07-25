@@ -1,3 +1,5 @@
+import ParallaxScrolling
+
 __author__ = 'Wiktor'
 
 from random import randint
@@ -28,7 +30,10 @@ clock = pygame.time.Clock()
 def gameLoop():
     game_over = False
 
-    background = Background.Background('Assets/background.png',0,0)
+    background1 = Background.Background('Assets/background.png',0,0)
+    background2 = Background.Background('Assets/background.png',screen_width,0)
+
+    background_scroller = ParallaxScrolling.ParallaxScrolling(background1,background2,-3)
 
     player = Bird.Bird(150,200, 0, 5,'Assets/bird.png')
 
@@ -50,7 +55,7 @@ def gameLoop():
         player.y += player.y_velocity
 
         surface.fill(clr_black)
-        background.render(surface,screen_width)
+        background_scroller.render(surface,screen_width)
         player.render(surface,player.x,player.y,player.asset)
 
         makeBlocks(block.x,block.y,block.width,block.height,block.gap)
