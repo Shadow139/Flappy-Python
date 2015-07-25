@@ -1,11 +1,7 @@
-import Animation
-from ImageLoader import imageLoaderScaled
-import ParallaxScrolling
-import pyganim
-
 __author__ = 'Wiktor'
 
 from random import randint
+from GameSettings import *
 from Color import *
 
 import pygame
@@ -13,11 +9,13 @@ import time
 import Bird
 import Block
 import Background
+import Animation
+import ParallaxScrolling
+import sys
+import Spike
+
 
 ### Definitions
-
-screen_width = 800
-screen_height = 480
 
 pygame.font.init()
 text_small = pygame.font.Font('freesansbold.ttf',20)
@@ -48,11 +46,12 @@ def gameLoop():
     player = Bird.Bird(150, 200, 0, 6, anim)
 
     block = Block.Block(screen_width,0,75,randint(0,(screen_height/2)),180,3,0,clr_white)
+    #spike = Spike.Spike(screen_width,0,75,randint(0,(screen_height/2)) ,180,3,0,'Assets/spikeLong.png','Assets/spikeLongFlip.png')
 
     while not game_over:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                game_over = True
+                sys.exit(1)
 
             if event.type == pygame.KEYDOWN :
                 if event.key == pygame.K_SPACE:
@@ -61,7 +60,7 @@ def gameLoop():
                 if event.key == pygame.K_SPACE:
                     player.y_velocity = 5
 
-        player.y += player.y_velocity
+        player.update()
 
         surface.fill(clr_black)
         background_scroller1.render(surface,screen_width)
@@ -69,15 +68,22 @@ def gameLoop():
 
         player.render(surface)
 
-        makeBlocks(block.x,block.y,block.width,block.height,block.gap)
-        block.x -= block.x_velocity
+        block.update()
+        block.renderBlocks(surface)
+
+
+        #spike.update()
+        #spike.render(surface)
+
 
         if player.y > screen_height - player.height or player.y < 0 :
             gameOver()
 
-        if block.x < (-1 * block.width):
-            block.x = screen_width
-            block.height = randint(0,(screen_height/2))
+        #if player.rect.colliderect(spike.rect1):
+        #    print('collision with 1')
+
+        #if player.rect.colliderect(spike.rect2):
+        #    print('collision with 2')
 
         if player.x + player.width > block.x:
             if player.x < block.x + block.width:
@@ -107,10 +113,6 @@ def replay_or_quit():
         return event.key
 
     return None
-
-def makeBlocks(x_block,y_block,block_width,block_height,gap):
-    pygame.draw.rect(surface,clr_white,[x_block,y_block,block_width,block_height])
-    pygame.draw.rect(surface,clr_white,[x_block,y_block + block_height + gap,block_width,screen_height])
 
 def makeTextObjs(message,font):
     textSurface = font.render(message,True,clr_white)

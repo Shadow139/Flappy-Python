@@ -1,6 +1,8 @@
 __author__ = 'Wiktor'
 
+from random import randint
 from ImageLoader import *
+from GameSettings import *
 
 
 class Block:
@@ -14,6 +16,13 @@ class Block:
         self.gap = gap
         self.color = color
 
-    def renderBlocks(self, surface,screen_height):
+    def update(self):
+        self.x -= self.x_velocity
+
+        if self.x < (-1 * self.width):
+            self.x = screen_width
+            self.height = randint(0,(screen_height/2))
+
+    def renderBlocks(self, surface):
         pygame.draw.rect(surface,self.color,[self.x,self.y,self.width,self.height])
         pygame.draw.rect(surface,self.color,[self.x,self.y + self.height + self.gap,self.width,screen_height])

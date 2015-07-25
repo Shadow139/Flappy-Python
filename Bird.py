@@ -15,6 +15,9 @@ class Bird:
         self.width = self.rect.width
         self.height = self.rect.height
 
+    def update(self):
+        self.y += self.y_velocity
+
     def render(self,surface):
             self.animation.render(surface,self.x,self.y)
 
