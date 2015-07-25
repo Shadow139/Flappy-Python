@@ -11,10 +11,9 @@ class Animation:
 
         for file in os.listdir(frames):
             if file.endswith(".png"):
-                print(file)
                 self.anim_frames.append((imageLoaderScaled(str(frames + file),scale),frametime))
+
         self.rect = self.anim_frames[0][0].get_rect()
-        print(self.rect)
 
         self.animation = pyganim.PygAnimation(self.anim_frames)
         self.animation.play()
