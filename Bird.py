@@ -21,3 +21,16 @@ class Bird:
     def render(self,surface):
             self.animation.render(surface,self.x,self.y)
 
+    def checkCollision(self,object):
+        if self.x + self.width > object.x:
+            if self.x < object.x + object.width:
+                if self.y < object.height:
+                    if(self.x - self.width < object.x + object.width):
+                        return True
+
+        if self.x + self.width > object.x:
+            if self.y + self.height > object.height + object.gap:
+                if self.x < object.x + object.width:
+                    return True
+
+        return False

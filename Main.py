@@ -70,22 +70,18 @@ def gameLoop():
         else:
             player.y_velocity = 5
 
-
-        player.update()
-
         surface.fill(clr_black)
         background_scroller1.render(surface,screen_width)
         background_scroller2.render(surface,screen_width)
 
+        player.update()
         player.render(surface)
 
         block.update()
         block.renderBlocks(surface)
 
-
         #spike.update()
         #spike.render(surface)
-
 
         if player.y > screen_height - player.height or player.y < 0 :
             gameOver()
@@ -96,16 +92,8 @@ def gameLoop():
         #if player.rect.colliderect(spike.rect2):
         #    print('collision with 2')
 
-        if player.x + player.width > block.x:
-            if player.x < block.x + block.width:
-                if player.y < block.height:
-                    if(player.x - player.width < block.x + block.width):
-                        gameOver()
-
-        if player.x + player.width > block.x:
-            if player.y + player.height > block.height + block.gap:
-                if player.x < block.x + block.width:
-                    gameOver()
+        if player.checkCollision(block):
+            gameOver()
 
         pygame.display.update()
         clock.tick(60)
