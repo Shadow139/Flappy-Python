@@ -29,7 +29,7 @@ class Bird:
                         return True
 
         if self.x + self.width > object.x:
-            if self.y + self.height > object.height + object.gap:
+            if self.y + self.height -20 > object.height + object.gap:
                 if self.x < object.x + object.width:
                     return True
 
