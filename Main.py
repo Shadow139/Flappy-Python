@@ -36,11 +36,16 @@ def gameLoop():
     background1 = Background.Background('Assets/background.png',0,0)
     background2 = Background.Background('Assets/background.png',screen_width,0)
 
-    background_scroller = ParallaxScrolling.ParallaxScrolling(background1,background2,-4)
+    background_scroller1 = ParallaxScrolling.ParallaxScrolling(background1,background2,-4)
+
+    background3 = Background.Background('Assets/groundSnow.png',0,410)
+    background4 = Background.Background('Assets/groundSnow.png',screen_width,410)
+
+    background_scroller2 = ParallaxScrolling.ParallaxScrolling(background3,background4,-6)
 
     anim = Animation.Animation("Assets/grumpy/", 0.1, 0.125)
 
-    player = Bird.Bird(150, 200, 0, 5, anim)
+    player = Bird.Bird(150, 200, 0, 6, anim)
 
     block = Block.Block(screen_width,0,75,randint(0,(screen_height/2)),180,3,0,clr_white)
 
@@ -59,7 +64,9 @@ def gameLoop():
         player.y += player.y_velocity
 
         surface.fill(clr_black)
-        background_scroller.render(surface,screen_width)
+        background_scroller1.render(surface,screen_width)
+        background_scroller2.render(surface,screen_width)
+
         player.render(surface)
 
         makeBlocks(block.x,block.y,block.width,block.height,block.gap)
