@@ -26,6 +26,8 @@ def gameLoop():
     game_over = False
     pause = False
 
+    space_pressed = True
+
     background1 = Background.Background('Assets/background.png',0,0)
     background2 = Background.Background('Assets/background.png',screen_width,0)
 
@@ -51,19 +53,21 @@ def gameLoop():
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_ESCAPE:
                     pause = not(pause)
+                if event.key == pygame.K_SPACE:
+                    space_pressed = True
 
         if pause:
             continue
 
         space = pygame.key.get_pressed()[pygame.K_SPACE]
 
-        if space:
-            player.y_velocity = -5
+        if space and space_pressed:
+            player.y_velocity = -45
+            space_pressed = False
         else:
             player.y_velocity = 5
 
 
-        print(pause)
         player.update()
 
         surface.fill(clr_black)
