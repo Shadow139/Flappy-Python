@@ -14,9 +14,16 @@ def imageLoaderScaledAndClipped(image, scale, clip):
 def imageLoaderScaled(image,scale):
     asset = pygame.image.load(image)
     rect = asset.get_rect()
-    scalex = int(rect.width * scale)
-    scaley = int(rect.height * scale)
-    scaledAsset = pygame.transform.scale(asset, (scalex, scaley))
+    scale_x = int(rect.width * scale)
+    scale_y = int(rect.height * scale)
+    scaledAsset = pygame.transform.scale(asset, (scale_x, scale_y))
+
+    return scaledAsset
+
+def imageLoaderPixelScaled(image,scale_x,scale_y):
+    asset = pygame.image.load(image)
+    rect = asset.get_rect()
+    scaledAsset = pygame.transform.scale(asset, (scale_x, scale_y))
 
     return scaledAsset
 
