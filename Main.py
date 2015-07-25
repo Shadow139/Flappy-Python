@@ -29,7 +29,7 @@ def gameLoop():
     space_pressed = True
 
     pause_bckgrnd = pygame.Surface((screen_width,screen_height), pygame.SRCALPHA, 32)
-    pause_bckgrnd.fill((0, 0, 0, 50))
+    pause_bckgrnd.fill((0, 0, 0, 150))
 
     sound = pygame.mixer.Sound('Assets/Audio/TheLoomingBattle_0.OGG')
     sound.play()
@@ -92,11 +92,13 @@ def gameLoop():
             if player.checkCollision(block):
                 gameOver()
 
+            pause_bckgrnd.fill((0, 0, 0, 150))
             pygame.display.update()
             clock.tick(60)
 
         else:
-            #surface.blit(pause_bckgrnd,(0,0))
+            surface.blit(pause_bckgrnd,(0,0))
+            pause_bckgrnd.fill((0, 0, 0, 0))
             pygame.display.update()
             clock.tick(60)
 
