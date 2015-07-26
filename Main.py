@@ -1,3 +1,5 @@
+import MessageOnScreen
+
 __author__ = 'Wiktor'
 
 from random import randint
@@ -33,6 +35,8 @@ def gameLoop():
 
     sound = pygame.mixer.Sound('Assets/Audio/TheLoomingBattle_0.OGG')
     sound.play()
+
+    pause_message = MessageOnScreen.MessageOnScreen('Paused',screen_width/2, screen_height/2,text_large,clr_white)
 
     background1 = Background.Background('Assets/background.png',0,0)
     background2 = Background.Background('Assets/background.png',screen_width,0)
@@ -98,6 +102,7 @@ def gameLoop():
 
         else:
             surface.blit(pause_bckgrnd,(0,0))
+            pause_message.render(surface)
             pause_bckgrnd.fill((0, 0, 0, 0))
             pygame.display.update()
             clock.tick(60)
