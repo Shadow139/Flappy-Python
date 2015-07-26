@@ -37,8 +37,8 @@ def gameLoop():
     sound.play()
 
     pause_message = MessageOnScreen.MessageOnScreen('Paused',screen_width/2, screen_height/2,text_large,clr_white)
-    gameOver_message = MessageOnScreen.MessageOnScreen('Game Over!',screen_width/2, screen_height/2,text_large,clr_white)
-    pressAny_message = MessageOnScreen.MessageOnScreen('Press any key to continue!',screen_width/2, (screen_height/2 - 100) ,text_small,clr_white)
+    gameOver_message = MessageOnScreen.MessageOnScreen('Game Over!',screen_width/2, screen_height/2,text_medium,clr_darkgrey)
+    pressAny_message = MessageOnScreen.MessageOnScreen('Press any key to continue!',screen_width/2, (screen_height/2 + 100) ,text_small,clr_darkgrey)
 
 
     background1 = Background.Background('Assets/background.png',0,0)
