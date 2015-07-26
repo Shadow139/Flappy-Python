@@ -37,6 +37,9 @@ def gameLoop():
     sound.play()
 
     pause_message = MessageOnScreen.MessageOnScreen('Paused',screen_width/2, screen_height/2,text_large,clr_white)
+    gameOver_message = MessageOnScreen.MessageOnScreen('Game Over!',screen_width/2, screen_height/2,text_large,clr_white)
+    pressAny_message = MessageOnScreen.MessageOnScreen('Press any key to continue!',screen_width/2, (screen_height/2 - 100) ,text_small,clr_white)
+
 
     background1 = Background.Background('Assets/background.png',0,0)
     background2 = Background.Background('Assets/background.png',screen_width,0)
@@ -85,10 +88,10 @@ def gameLoop():
             #spike.render(surface)
 
             if player.y > screen_height - player.height + 20 or player.y < 0 :
-                gameOver()
+                gameOver(gameOver_message,pressAny_message)
 
             if player.checkCollision(block):
-                gameOver()
+                gameOver(gameOver_message,pressAny_message)
 
             #if player.rect.colliderect(spike.rect1):
             #    print('collision with 1')
@@ -107,8 +110,17 @@ def gameLoop():
             pygame.display.update()
             clock.tick(60)
 
-def gameOver():
-    msgOnScreen('Game Over!')
+def gameOver(gameOver_message,pressAny_message):
+    gameOver_message.render(surface)
+    pressAny_message.render(surface)
+
+    pygame.display.update()
+    time.sleep(1)
+
+    while replay_or_quit() == None:
+        clock.tick()
+
+    gameLoop()
 
 def replay_or_quit():
     for event in pygame.event.get([pygame.KEYDOWN, pygame.KEYUP, pygame.QUIT]):
@@ -121,27 +133,6 @@ def replay_or_quit():
         return event.key
 
     return None
-
-def makeTextObjs(message,font):
-    textSurface = font.render(message,True,clr_white)
-    return textSurface, textSurface.get_rect()
-
-def msgOnScreen(message):
-    titleTextSurf,titleTextRect = makeTextObjs(message,text_large)
-    titleTextRect.center = screen_width/2, screen_height/2
-    surface.blit(titleTextSurf,titleTextRect)
-
-    subTitleTextSurf,subTitleTextRect = makeTextObjs('Press any key to continue!',text_small)
-    subTitleTextRect.center = screen_width/2, (screen_height/2 + 100)
-    surface.blit(subTitleTextSurf,subTitleTextRect)
-
-    pygame.display.update()
-    time.sleep(1)
-
-    while replay_or_quit() == None:
-        clock.tick()
-
-    gameLoop()
 
 gameLoop()
 
