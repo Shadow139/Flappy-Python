@@ -83,14 +83,14 @@ def gameLoop():
             if player.y > screen_height - player.height + 20 or player.y < 0 :
                 gameOver()
 
+            if player.checkCollision(block):
+                gameOver()
+
             #if player.rect.colliderect(spike.rect1):
             #    print('collision with 1')
 
             #if player.rect.colliderect(spike.rect2):
             #    print('collision with 2')
-
-            if player.checkCollision(block):
-                gameOver()
 
             pause_bckgrnd.fill((0, 0, 0, 150))
             pygame.display.update()
@@ -101,9 +101,6 @@ def gameLoop():
             pause_bckgrnd.fill((0, 0, 0, 0))
             pygame.display.update()
             clock.tick(60)
-
-
-
 
 def gameOver():
     msgOnScreen('Game Over!')
