@@ -24,12 +24,8 @@ pygame.display.set_caption("Awaaaysomeee Game!")
 
 clock = pygame.time.Clock()
 
-anim = Animation.Animation("Assets/grumpy/", 0.1, 0.125)
-player = Bird.Bird(150, 200, 0, 6, anim)
-
-highscore = Highscore.Highscore()
-
-block = Block.Block(screen_width,0,75,randint(0,(screen_height/2)),180,3,0,clr_white)
+sound = pygame.mixer.Sound('Assets/Audio/TheLoomingBattle_0.OGG')
+jump = pygame.mixer.Sound('Assets/Audio/jump.wav')
 
 def gameLoop():
     game_over = False
@@ -40,7 +36,6 @@ def gameLoop():
     pause_bckgrnd = pygame.Surface((screen_width,screen_height), pygame.SRCALPHA, 32)
     pause_bckgrnd.fill((0, 0, 0, 150))
 
-    sound = pygame.mixer.Sound('Assets/Audio/TheLoomingBattle_0.OGG')
     sound.play()
 
     pause_message = MessageOnScreen.MessageOnScreen('Paused',screen_width/2, screen_height/2,text_large,clr_white)
@@ -79,6 +74,7 @@ def gameLoop():
             space = pygame.key.get_pressed()[pygame.K_SPACE]
 
             if space and space_pressed:
+                jump.play()
                 player.y_velocity = -45
                 space_pressed = False
             else:
@@ -107,7 +103,6 @@ def gameLoop():
 
             if player.checkCollision(block):
                 gameOver(gameOver_message,pressAny_message)
-
 
             #if player.rect.colliderect(spike.rect1):
             #    print('collision with 1')
