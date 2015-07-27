@@ -9,7 +9,6 @@ class Highscore:
         self.score = 0
         self.text = text_small.render("Score: "+str(self.score), True, clr_darkgrey)
 
-
     def update(self):
         self.score += 1
 

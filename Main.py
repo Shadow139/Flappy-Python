@@ -24,6 +24,12 @@ pygame.display.set_caption("Awaaaysomeee Game!")
 
 clock = pygame.time.Clock()
 
+anim = Animation.Animation("Assets/grumpy/", 0.1, 0.125)
+player = Bird.Bird(150, 200, 0, 6, anim)
+
+highscore = Highscore.Highscore()
+
+block = Block.Block(screen_width,0,75,randint(0,(screen_height/2)),180,3,0,clr_white)
 
 def gameLoop():
     game_over = False
@@ -78,14 +84,20 @@ def gameLoop():
             else:
                 player.y_velocity = 5
 
-            background_scroller1.render(surface,screen_width)
-            background_scroller2.render(surface,screen_width)
+            #update
 
             player.update()
-            player.render(surface)
-
             block.update()
+            if player.x < block.x and player.x > block.x - block.x_velocity:
+                highscore.update()
+
+            #render
+
+            background_scroller1.render(surface,screen_width)
+            background_scroller2.render(surface,screen_width)
+            player.render(surface)
             block.renderBlocks(surface)
+            highscore.render(surface)
 
             #spike.update()
             #spike.render(surface)
@@ -96,10 +108,6 @@ def gameLoop():
             if player.checkCollision(block):
                 gameOver(gameOver_message,pressAny_message)
 
-            if player.x < block.x and player.x > block.x - block.x_velocity:
-                highscore.update()
-
-            highscore.render(surface)
 
             #if player.rect.colliderect(spike.rect1):
             #    print('collision with 1')
