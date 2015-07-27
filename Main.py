@@ -1,3 +1,4 @@
+import Highscore
 import MessageOnScreen
 
 __author__ = 'Wiktor'
@@ -52,6 +53,8 @@ def gameLoop():
     anim = Animation.Animation("Assets/grumpy/", 0.1, 0.125)
     player = Bird.Bird(150, 200, 0, 6, anim)
 
+    highscore = Highscore.Highscore()
+
     block = Block.Block(screen_width,0,75,randint(0,(screen_height/2)),180,3,0,clr_white)
     #spike = Spike.Spike(screen_width,0,75,randint(0,(screen_height/2)) ,180,3,0,'Assets/spikeLong.png','Assets/spikeLongFlip.png')
 
@@ -92,6 +95,11 @@ def gameLoop():
 
             if player.checkCollision(block):
                 gameOver(gameOver_message,pressAny_message)
+
+            if player.x < block.x and player.x > block.x - block.x_velocity:
+                highscore.update()
+
+            highscore.render(surface)
 
             #if player.rect.colliderect(spike.rect1):
             #    print('collision with 1')
