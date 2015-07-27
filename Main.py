@@ -52,11 +52,11 @@ def gameLoop():
     background_scroller2 = ParallaxScrolling.ParallaxScrolling(background3,background4,-6)
 
     anim = Animation.Animation("Assets/grumpy/", 0.1, 0.125)
-    player = Bird.Bird(150, 200, 0, 6, anim)
+    player = Bird.Bird(150, 200, 0, 3, anim)
 
     highscore = Highscore.Highscore()
 
-    block = Block.Block(screen_width,0,75,randint(0,(screen_height/2)),180,3,0,clr_white)
+    block = Block.Block(screen_width,0,75,randint(0,(screen_height/2)),120,200,3,0,clr_white)
     #spike = Spike.Spike(screen_width,0,75,randint(0,(screen_height/2)) ,180,3,0,'Assets/spikeLong.png','Assets/spikeLongFlip.png')
 
     while not game_over:
@@ -75,10 +75,10 @@ def gameLoop():
 
             if space and space_pressed:
                 jump.play()
-                player.y_velocity = -45
+                player.y_velocity = -35
                 space_pressed = False
             else:
-                player.y_velocity = 5
+                player.y_velocity = 3
 
             #update
 
