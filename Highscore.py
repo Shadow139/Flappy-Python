@@ -13,6 +13,7 @@ class Highscore:
 
     def update(self):
         self.score += 1
+        print(self.score)
 
     def render(self,surface):
         self.score_text = text_small.render("Score: "+str(self.score), True, clr_darkgrey)
@@ -44,7 +45,7 @@ class Highscore:
  
  
     def saveHighscore(self,highscore):
-        if self.score <= self.highscore:
+        if self.score < self.highscore:
             return
 
         try:

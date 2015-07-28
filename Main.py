@@ -89,10 +89,10 @@ def gameLoop():
             block.update()
             if player.x < block.x and player.x > block.x - block.x_velocity:
                 highscore.update()
-                if highscore.score % 2 == 0 and highscore.score != 0:
-                    block.x_velocity += 1
-                    background_scroller1.scrollspeed += 1
-                    background_scroller2.scrollspeed += 1
+                #if highscore.score % 2 == 0 and highscore.score != 0:
+                    #block.x_velocity += 1
+                    #background_scroller1.scrollspeed += 1
+                    #background_scroller2.scrollspeed += 1
 
             #render
 
