@@ -27,11 +27,14 @@ clock = pygame.time.Clock()
 sound = pygame.mixer.Sound('Assets/Audio/TheLoomingBattle_0.OGG')
 jump = pygame.mixer.Sound('Assets/Audio/jump.wav')
 
+
 def gameLoop():
     game_over = False
     paused = False
 
     space_pressed = True
+
+    frame_count = 0
 
     pause_bckgrnd = pygame.Surface((screen_width,screen_height), pygame.SRCALPHA, 32)
     pause_bckgrnd.fill((0, 0, 0, 150))
@@ -86,6 +89,10 @@ def gameLoop():
             block.update()
             if player.x < block.x and player.x > block.x - block.x_velocity:
                 highscore.update()
+                if highscore.score % 2 == 0 and highscore.score != 0:
+                    block.x_velocity += 1
+                    background_scroller1.scrollspeed += 1
+                    background_scroller2.scrollspeed += 1
 
             #render
 
