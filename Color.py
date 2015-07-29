@@ -1,4 +1,7 @@
 __author__ = 'Wiktor'
+"""
+A Class that represents different colors for easy acess.
+"""
 
 clr_black = (0,0,0)
 clr_darkgrey = (105,105,105)

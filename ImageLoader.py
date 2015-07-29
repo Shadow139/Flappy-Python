@@ -1,5 +1,9 @@
 __author__ = 'Wiktor'
 
+"""
+A Class contining Functions for Image Loading,Scaling and Clipping.
+"""
+
 import pygame
 
 def imageLoaderScaledAndClipped(image, scale, clip):

@@ -1,6 +1,10 @@
-import pygame
-
 __author__ = 'Wiktor'
+
+"""
+A Class that contains important Game Settings for the game.
+"""
+
+import pygame
 
 screen_width = 800
 screen_height = 480
