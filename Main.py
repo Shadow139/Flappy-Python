@@ -119,7 +119,7 @@ def gameLoop():
 
             pause_bckgrnd.fill((0, 0, 0, 150))
             pygame.display.update()
-            clock.tick(60)
+            clock.tick(fps)
 
         else:
             surface.blit(pause_bckgrnd,(0,0))

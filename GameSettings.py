@@ -9,6 +9,8 @@ import pygame
 screen_width = 800
 screen_height = 480
 
+fps = 60
+
 #Fonts
 
 pygame.font.init()
