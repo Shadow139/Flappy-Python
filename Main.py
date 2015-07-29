@@ -22,7 +22,7 @@ pygame.init()
 surface = pygame.display.set_mode((screen_width,screen_height))
 pygame.display.set_caption("Awaaaysomeee Game!")
 
-clock = pygame.time.Clock()
+fpsClock = pygame.time.Clock()
 
 sound = pygame.mixer.Sound('Assets/Audio/TheLoomingBattle_0.OGG')
 jump = pygame.mixer.Sound('Assets/Audio/jump.wav')
@@ -65,6 +65,7 @@ def gameLoop():
     while not game_over:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                pygame.quit()
                 sys.exit(1)
 
             if event.type == pygame.KEYUP:
@@ -119,14 +120,14 @@ def gameLoop():
 
             pause_bckgrnd.fill((0, 0, 0, 150))
             pygame.display.update()
-            clock.tick(fps)
+            fpsClock.tick(fps)
 
         else:
             surface.blit(pause_bckgrnd,(0,0))
             pause_message.render(surface)
             pause_bckgrnd.fill((0, 0, 0, 0))
             pygame.display.update()
-            clock.tick(60)
+            fpsClock.tick(60)
 
 def gameOver(gameOver_message,pressAny_message,highscore):
     gameOver_message.render(surface)
@@ -138,7 +139,7 @@ def gameOver(gameOver_message,pressAny_message,highscore):
     time.sleep(1)
 
     while replay_or_quit() == None:
-        clock.tick()
+        fpsClock.tick()
 
     gameLoop()
 
@@ -146,7 +147,7 @@ def replay_or_quit():
     for event in pygame.event.get([pygame.KEYDOWN, pygame.KEYUP, pygame.QUIT]):
         if event.type == pygame.QUIT:
             pygame.quit()
-            quit()
+            sys.exit(1)
         elif event.type == pygame.KEYDOWN:
             continue
 
