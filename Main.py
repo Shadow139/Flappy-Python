@@ -39,7 +39,7 @@ def gameLoop():
     pause_bckgrnd = pygame.Surface((screen_width,screen_height), pygame.SRCALPHA, 32)
     pause_bckgrnd.fill((0, 0, 0, 150))
 
-    sound.play(-1,0.0)
+    sound.play(-1,0)
 
     pause_message = MessageOnScreen.MessageOnScreen('Paused',screen_width/2, screen_height/2,text_large,clr_white)
     gameOver_message = MessageOnScreen.MessageOnScreen('Game Over!',screen_width/2, screen_height/2,text_medium,clr_darkgrey)
